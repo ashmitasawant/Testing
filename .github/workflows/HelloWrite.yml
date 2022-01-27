@@ -22,10 +22,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: |
-             git add test.txt
-             git commit -m "First Commit"
-             git remote add https://github.com/ashmitasawant/Testing.git
-             git push origin main
-
+      - uses: "finnp/create-file-action@master"
+        env:
+          FILE_NAME: "dir/fileName.txt"
+          FILE_BASE64: "file content"
+      -  run: cat filename | base64
       
