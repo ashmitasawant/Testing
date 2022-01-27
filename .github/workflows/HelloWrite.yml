@@ -24,7 +24,7 @@ jobs:
       - name: Run a one-line script
         uses: "finnp/create-file-action@master"
         env:
-          FILE_NAME: "dir/fileName.txt"
+          FILE_NAME: "./fileName.txt"
           FILE_BASE64: "file content"
       - run: cat filename | base64
       
