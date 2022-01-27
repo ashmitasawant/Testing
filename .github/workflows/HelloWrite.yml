@@ -25,6 +25,6 @@ jobs:
         uses: "finnp/create-file-action@master"
         env:
           FILE_NAME: "./fileName.txt"
-          FILE_BASE64: "file content"
+          FILE_BASE64: "ZWFzdGVyZWdnLWxvbAo="
       - run: cat filename | base64
       
