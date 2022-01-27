@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          date > published.txt
+          echo "Hii" >> published.txt
           git config user.name ashmitasawant
           git config user.email ashmitasawant3@gmail.com
           git add .
