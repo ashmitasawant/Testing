@@ -26,5 +26,5 @@ jobs:
         env:
           FILE_NAME: "./fileName.txt"
           FILE_BASE64: "ZWFzdGVyZWdnLWxvbAo="
-      - run: cat filename.txt | base64
+      - run: cat ./filename.txt | base64
       
