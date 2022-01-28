@@ -22,7 +22,7 @@ jobs:
                          }'`
              echo "::set-output name=result::$CODE"
   fetch:
-   runs-on: ubuntu-latest\
+   runs-on: ubuntu-latest
    needs: apiCall
    steps:
      - name: show
