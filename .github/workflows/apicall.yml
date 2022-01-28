@@ -20,7 +20,7 @@ jobs:
 
             if [ $CODE=="200" ] 
             then
-               echo "SUCCESS"
+               echo "The process executed successfully"
             else
                echo "FAILURE"
             fi
