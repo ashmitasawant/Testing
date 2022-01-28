@@ -8,7 +8,7 @@ jobs:
       output1: ${{ steps.new.outputs.result}}
    steps:
      - name: Package Creation
-     - id: new
+       id: new
        run: |
             CODE=`curl --write-out '%{http_code}' \
             --request POST \
@@ -21,6 +21,7 @@ jobs:
                           "role":"Software Engineer"
                          }'`
              echo "::set-output name=result::$CODE"
+             
      - name: show
      - run: echo ${{steps.new.outputs.output1}}
       
