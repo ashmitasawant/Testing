@@ -18,10 +18,5 @@ jobs:
                           "role":"Software Engineer"
                          }'`
 
-            if [ $CODE=="200" ] 
-            then
-               echo "The process executed successfully"
-            else
-               echo "FAILURE"
-            fi
+            echo $CODE
 
