@@ -19,5 +19,5 @@ jobs:
         preventFailureOnNoResponse: true
         
      - name: HasResponse?
-     - if: "${{ toJSON(steps.packageCreation.preventFailureOnNoResponse) }}==true"
+       if: "${{ toJSON(steps.packageCreation.preventFailureOnNoResponse) }}==true"
        run: echo "Success"
