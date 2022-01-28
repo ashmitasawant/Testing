@@ -16,4 +16,5 @@ jobs:
         data: ' {"name":"Ashmita","age":18,"role":"Software Engineer" }'
         username: 'trainingashmitasawant-D9P8J7.YG1FA4'
         password: '9bfd395e-361d-41ad-8107-154f5938402f'
-     -  run: echo ${{ toJSON(steps.packageCreation.outputs.status) }}
+     -  if: "${{ toJSON(steps.packageCreation.outputs.response) }}==null"
+        run: echo "Success"
