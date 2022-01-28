@@ -4,8 +4,11 @@ on:
 jobs: 
   apiCall:
    runs-on: ubuntu-latest
+   outputs:
+      output1: ${{ steps.new.outputs.result}}
    steps:
      - name: Package Creation
+     - id: new
        run: |
             CODE=`curl --write-out '%{http_code}' \
             --request POST \
@@ -17,11 +20,8 @@ jobs:
                           "age":18,
                           "role":"Software Engineer"
                          }'`
-
-            if [ $CODE==200 ] 
-            then
-               echo "The process executed successfully"
-            else
-               echo $CODE
-            fi
-
+             echo "::set-output name=result::$CODE"
+     - name: show
+       run: echo ${{steps.new.outputs.output1}}
+      
+           
