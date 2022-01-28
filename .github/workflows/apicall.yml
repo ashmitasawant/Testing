@@ -17,7 +17,5 @@ jobs:
         username: 'trainingashmitasawant-D9P8J7.YG1FA4'
         password: '9bfd395e-361d-41ad-8107-154f5938402f'
         preventFailureOnNoResponse: 'true'
-        
-     - name: HasResponse?
-       run: echo "${{(steps.packageCreation.preventFailureOnNoResponse)}}"
+     - run: echo "${{(steps.packageCreation.preventFailureOnNoResponse)}}"
     
