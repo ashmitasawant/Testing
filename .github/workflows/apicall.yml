@@ -16,7 +16,7 @@ jobs:
         data: ' {"name":"Ashmita","age":18,"role":"Software Engineer" }'
         username: 'trainingashmitasawant-D9P8J7.YG1FA4'
         password: '9bfd395e-361d-41ad-8107-154f5938402f'
-        preventFailureOnNoResponse: k
+        preventFailureOnNoResponse: 'k'
         
      - name: HasResponse?
        if: "${{ toJSON(steps.packageCreation.preventFailureOnNoResponse) }}==true"
