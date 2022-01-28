@@ -21,10 +21,8 @@ jobs:
                           "role":"Software Engineer"
                          }'`
              echo "::set-output name=result::$CODE"
-  fetch:
-   runs-on: ubuntu-latest
-   needs: apiCall
-   steps:
-     - name: show
-       run: echo ${{needs.apiCall.outputs.output1}}
+              
+              
+             echo $CODE
+             echo $CODE
            
