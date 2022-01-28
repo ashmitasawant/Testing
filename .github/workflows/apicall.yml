@@ -14,8 +14,8 @@ jobs:
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
         data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"p1", "notes":"Package for deployment" }'
-        username: ${{env.MY_USERNAME}}
-        password: ${{env.MY_PASSWORD}} 
+        username: 'trainingashmitasawant-D9P8J7.YG1FA4'
+        password: '9bfd395e-361d-41ad-8107-154f5938402f'
      - run: |
             status= $(echo ${{ toJSON(steps.packageDeploy.outputs.status)}})
             echo $status
