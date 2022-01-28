@@ -20,10 +20,10 @@ jobs:
                           "role":"Software Engineer"
                          }'`
 
-            if [ $CODE!="200" ] 
+            if [ $CODE=="200" ] 
             then
-               echo "FAILURE"
-            else
                echo "SUCCESS"
+            else
+               echo "FAILURE"
             fi
 
