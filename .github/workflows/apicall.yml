@@ -17,4 +17,5 @@ jobs:
         username: ${{env.MY_USERNAME}}
         password: ${{env.MY_PASSWORD}} 
      - run: |
-            status= $(echo ${{ toJSON(steps.packageDeploy.outputs.status)
+            status= $(echo ${{ toJSON(steps.packageDeploy.outputs.status)}})
+            echo $status
