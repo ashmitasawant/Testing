@@ -9,11 +9,11 @@ jobs:
        id: packageCreation
        uses: fjogeleit/http-request-action@master
        with:
-        url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent'
+        url: 'https://c01-sg.integrate.boomi.com/ws/rest/personDetails/v1/personDetails/'
         method: 'POST'
         contentType: 'application/json'
         customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessIds.outputs.output1}},"packageVersion":"p1", "notes":"Package for deployment" }'
+        data: ' {"name":"Ashmita","age":18,"role":"Software Engineer" }'
         username: 'trainingashmitasawant-D9P8J7.YG1FA4'
         password: '9bfd395e-361d-41ad-8107-154f5938402f'
      - run: |
