@@ -19,5 +19,5 @@ jobs:
         preventFailureOnNoResponse: 'true'
         
      - name: HasResponse?
-       run: echo "${{(steps.packageCreation.code)}}"
+       run: echo "${{(steps.packageCreation.preventFailureOnNoResponse)}}"
     
