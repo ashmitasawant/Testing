@@ -7,6 +7,12 @@ jobs:
    steps:
      - name: Package Creation
        run: |
-            $response = Invoke-WebRequest -Uri "https://c01-sg.integrate.boomi.com/ws/rest/personDetails/v1/personDetails/" -Headers "{"accept": "application/json", "authorization":"Basic dHJhaW5pbmdhc2htaXRhc2F3YW50LUQ5UDhKNy5ZRzFGQTQ6OWJmZDM5NWUtMzYxZC00MWFkLTgxMDctMTU0ZjU5Mzg0MDJm"}" -Body "{"name": "Ashmita","age": 18,"role": "Software Engineer"}" -Method POST
-            $StatusCode = $Response.StatusCode
-            echo $StatusCode
+          curl --request POST \
+          --header 'authorization: Basic dHJhaW5pbmdhc2htaXRhc2F3YW50LUQ5UDhKNy5ZRzFGQTQ6OWJmZDM5NWUtMzYxZC00MWFkLTgxMDctMTU0ZjU5Mzg0MDJm }}' \
+          --header 'content-type: application/json' \
+          --url https://c01-sg.integrate.boomi.com/ws/rest/personDetails/v1/personDetails/
+          --data '{
+            "name": "Ashmita",
+            "age": 18,
+            "role": "Software Engineer"
+           }'
