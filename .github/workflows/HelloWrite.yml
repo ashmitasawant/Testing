@@ -11,7 +11,7 @@ jobs:
           git config user.email ashmitasawant3@gmail.com
           git add .
           git commit -m "Published Changes"
-          git push- name: Get ComponentId
+          git push
      
       - name: Get ComponentId
         uses: actions/checkout@v2
