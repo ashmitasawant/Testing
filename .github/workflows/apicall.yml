@@ -21,7 +21,13 @@ jobs:
                           "role":"Software Engineer"
                          }'`
              echo "::set-output name=result::$CODE"
-              
+             
+            if [ $CODE=="200" ] 
+            then
+               echo "The process executed successfully"
+            else
+               echo $CODE
+            fi
               
              echo $CODE
              echo $CODE
