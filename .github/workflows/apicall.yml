@@ -1,6 +1,8 @@
 name: API Call
-on:
-  workflow_dispatch
+on: 
+  push:
+    branches:
+      - main
 jobs: 
   apiCall:
    runs-on: ubuntu-latest
