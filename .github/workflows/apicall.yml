@@ -22,7 +22,7 @@ jobs:
                          }'`
              echo "::set-output name=result::$CODE"
              
-            if [ $CODE=="200" ] 
+            if [ $CODE!="200" ] 
             then
                echo "The process executed successfully"
             else
