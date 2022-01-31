@@ -1,21 +1,21 @@
 [{
-	"info": {
-		"packageVersion": "v1.0",
-		"processDetails": [{
-				"processName": "abc",
-				"componentID": "8971972o",
-				"environmentID": "27o121328ue2dw"
-			},
-			{
-				"processName": "abc",
-				"componentID": "8971972o",
-				"environmentID": "27o121328ue2dw"
-			},
-			{
-				"processName": "abc",
-				"componentID": "8971972o",
-				"environmentID": "27o121328ue2dw"
-			}
-		]
-	}
+
+	"packageVersion": "v1.0",
+	"processDetails": [{
+			"processName": "abc",
+			"componentID": "8971972o",
+			"environmentID": "27o121328ue2dw"
+		},
+		{
+			"processName": "abc",
+			"componentID": "8971972o",
+			"environmentID": "27o121328ue2dw"
+		},
+		{
+			"processName": "abc",
+			"componentID": "8971972o",
+			"environmentID": "27o121328ue2dw"
+		}
+	]
+
 }]
