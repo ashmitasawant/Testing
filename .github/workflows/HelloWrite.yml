@@ -11,4 +11,14 @@ jobs:
           git config user.email ashmitasawant3@gmail.com
           git add .
           git commit -m "Published Changes"
-          git push
+          git push- name: Get ComponentId
+     
+      - name: Get ComponentId
+      - uses: actions/checkout@v2
+      - id: setComponentId
+        run: |
+            ProcessDetails=$(cat ./ProcessInfo/ProcessDetails.json)
+            componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
+            environmentId=$(echo  ${ProcessDetails} | jq '.[0].environmentID')
+            echo "::set-output name=componentID::$componentId"
+            echo "::set-output name=environmentID::$environmentId"
