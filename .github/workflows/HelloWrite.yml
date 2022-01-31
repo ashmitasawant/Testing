@@ -19,7 +19,7 @@ jobs:
       - run: |
             processDetails=$(cat ./ProcessInfo/processDetails.json)
             packageVersion=$(echo  ${processDetails} | jq '.[] | .packageVersion')
-            componentID=$(echo  ${processDetails} | jq '.[] | .[] | .[] | .componentID')
+            componentID=$(echo  ${processDetails} | jq '.[] | .processDetails[].componentID')
             echo $processDetails
             echo $packageVersion
             echo $componentID
