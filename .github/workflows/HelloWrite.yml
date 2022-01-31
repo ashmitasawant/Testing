@@ -18,7 +18,7 @@ jobs:
         id: setComponentId
       - run: |
             processDetails=$(cat ./ProcessInfo/processDetails.json)
-            packageVersion=$(echo  ${ProcessDetails} | jq '.packageVersion')
+            packageVersion=$(echo  ${processDetails} | jq '.packageVersion')
             
             echo $processDetails
             echo $packageVersion
