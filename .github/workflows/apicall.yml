@@ -16,9 +16,9 @@ jobs:
             --header 'content-type: application/json' \
             --url 'https://c01-sg.integrate.boomi.com/ws/rest/personDetails/v1/personDetails/' \
             --data '    {
-                          "name":"Ashmita",
-                          "age":18,
-                          "role":"Software Engineer"
+                          "nam":"Ashmita",
+                          "ag":18,
+                          "rol":"Software Engineer"
                          }'`
              echo "::set-output name=result::$CODE"
              
