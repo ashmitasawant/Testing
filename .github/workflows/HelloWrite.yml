@@ -20,5 +20,5 @@ jobs:
             ProcessDetails=$(cat ./ProcessInfo/processDetails.json)
             componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
             environmentId=$(echo  ${ProcessDetails} | jq '.[0].environmentID')
-            echo "::set-output name=componentID::$componentId"
-            echo "::set-output name=environmentID::$environmentId"
+            echo $componentId
+            echo $environmentId
