@@ -15,8 +15,8 @@ jobs:
      
       - name: Get ComponentId
       - uses: actions/checkout@v2
-      - id: setComponentId
-        run: |
+        id: setComponentId
+      - run: |
             ProcessDetails=$(cat ./ProcessInfo/ProcessDetails.json)
             componentId=$(echo  ${ProcessDetails} | jq '.[0].componentID')
             environmentId=$(echo  ${ProcessDetails} | jq '.[0].environmentID')
