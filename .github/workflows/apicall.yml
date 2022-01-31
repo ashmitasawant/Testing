@@ -20,7 +20,7 @@ jobs:
                           "age":18,
                           "role":"Software Engineer"
                          }'`
-             echo "::set-output name=result::$CODE"
+             
              
             if [[ $CODE == *"200"* ]]
             then
