@@ -47,9 +47,10 @@ jobs:
             
   createPackage:
    strategy:
-      matrix:
-        componentIds: (${{needs.getProcessInfo.outputs.output4}})
+    matrix:
+        componentIds: ${{toJson(needs.getProcessInfo.outputs.output4)}}
    runs-on: ubuntu-latest
+
    needs: getProcessInfo
    steps:
      - name: test
