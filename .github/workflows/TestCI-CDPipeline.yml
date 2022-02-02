@@ -41,7 +41,7 @@ jobs:
                   componentIds=${componentIds:0:-1}
                   echo ${componentIds//,/,}
             echo $componentIds
-            echo "::set-output name=componentID_Array ::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"               
+            echo "::set-output name=componentID_Array ::{\"processDetails\": [{\"processName\": \"TestWS\",\"componentID\": \"bb076cd7-8f1e-42a7-843c-3b9c5dda0bb5\",\"environmentID\": \"5d9c830c-1f65-4fed-b7ef-fdbbbaf7d259\"}]}"               
   createPackage:
    strategy:
     matrix:  ${{fromJson(needs.getProcessInfo.outputs.output4)}}
@@ -52,7 +52,7 @@ jobs:
    steps:
      - name: test
        run: |
-             echo ${{ matrix.project }}
+             echo ${{ matrix.componentID }}
              echo ${{needs.getProcessInfo.outputs.output4}}
          
        
