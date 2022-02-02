@@ -15,7 +15,7 @@ jobs:
       output1: ${{ steps.setProcessInfo.outputs.componentID }}
       output2: ${{ steps.setProcessInfo.outputs.environmentID }}
       output3: ${{ steps.setProcessInfo.outputs.packageVersion }}
-      output4: ${{ steps.setProcessInfo.outputs.componentID_Array }}
+      matrix: ${{ steps.setProcessInfo.outputs.componentID_matrix }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -40,21 +40,21 @@ jobs:
                   componentIds=${componentIds:0:-1}
                   echo ${componentIds//,/,}
             echo $componentIds
-            echo "::set-output name=componentID_Array::$componentIds"
+            echo "::set-output name=componentID_matrix ::$componentIds"
             
   
             
   createPackage:
    strategy:
       matrix:
-        componentIds: ${{needs.getProcessInfo.outputs.output4}}
+        componentIds: ${{needs.getProcessInfo.outputs.matrix}}
    runs-on: ubuntu-latest
    needs: getProcessInfo
    steps:
      - name: test
        run: |
              echo ${{matrix.componentIds}} 
-             echo ${{needs.getProcessInfo.outputs.output4}}
+         
        
      
             
