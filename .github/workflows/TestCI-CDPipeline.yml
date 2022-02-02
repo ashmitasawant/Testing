@@ -31,7 +31,7 @@ jobs:
             echo "::set-output name=componentID::$componentID"
             echo "::set-output name=environmentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
-            echo $componentID
+            echo [$componentID]
   
             
   createPackage:
