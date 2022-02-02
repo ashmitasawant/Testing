@@ -40,38 +40,22 @@ jobs:
     env: 
       MY_USERNAME: ${{ secrets.MY_USERNAME }}
       MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
+    needs: getProcessInfo
+    strategy: 
+     matrix:
+      componentIdArray: ${{needs.getProcessInfo.outputs.output4}}
      
     runs-on: ubuntu-latest
     outputs:
       output5: ${{ steps.response.outputs.packageId }}
-    needs: getProcessInfo
+    
     steps:
      - name: SetVariables
        id: showVariable
-       run:   echo ${{needs.getProcessInfo.outputs.output1}}
-              echo ${{needs.getProcessInfo.outputs.output4}}
+       run: |
+           echo ${{matrix.componentIdArray}}
        
-     - name: Package Creation
-       id: packageCreation
-       run: |
-             arr=()
-             for i in "${{needs.getProcessInfo.outputs.output4}}"
-             do
-             - uses: fjogeleit/http-request-action@master
-               with:
-                url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent'
-                method: 'POST'
-                contentType: 'application/json'
-                customHeaders: '{"accept": "application/json"}'
-                data: '{"componentId": ${{needs.getProcessInfo.outputs.output4}},"packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'
-                username: ${{env.MY_USERNAME}}
-                password: ${{env.MY_PASSWORD}}
-             done        
-     - name: Show Response
-       id: response
-       run: |
-            packageID=$(echo ${{ toJSON(steps.packageCreation.outputs.response) }} | jq ".packageId")
-            echo "::set-output name=packageId::$packageID"
+     
             
         
   
