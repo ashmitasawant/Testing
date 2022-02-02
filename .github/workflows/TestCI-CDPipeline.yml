@@ -38,7 +38,7 @@ jobs:
                   done
                   ) )
                   output=${out:0:-1}
-                  echo ${output//,/, }
+                  echo ${output//,/ }
             echo $out
             echo "::set-output name=componentID_Array::$componentIdsArray"
   
