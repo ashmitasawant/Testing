@@ -55,11 +55,12 @@ jobs:
        
      - name: Package Creation
        id: packageCreation
-       uses: fjogeleit/http-request-action@master
+       
      - run: |
              arr=()
              for i in "${{needs.getProcessInfo.outputs.output4}}"
              do
+               uses: fjogeleit/http-request-action@master
                with:
                 url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent'
                 method: 'POST'
