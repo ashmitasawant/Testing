@@ -55,8 +55,7 @@ jobs:
        
      - name: Package Creation
        id: packageCreation
-       
-     - run: |
+       run: |
              arr=()
              for i in "${{needs.getProcessInfo.outputs.output4}}"
              do
