@@ -40,20 +40,20 @@ jobs:
                   componentIds=${componentIds:0:-1}
                   echo ${componentIds//,/,}
             echo $componentIds
-            echo "::set-output name=componentID_matrix ::$componentIds"
+            echo "::set-output name=componentID_matrix ::$(cat ./ProcessInfo/ProcessDetails.json)"
             
   
             
   createPackage:
    strategy:
       matrix:
-        componentIds: ${{needs.getProcessInfo.outputs.matrix}}
+        componentIds: ${{fromJson(needs.getProcessInfo.outputs.matrix)}}
    runs-on: ubuntu-latest
    needs: getProcessInfo
    steps:
      - name: test
        run: |
-             echo ${{matrix.componentIds}} 
+             echo ${{matrix.componentId}} 
          
        
      
