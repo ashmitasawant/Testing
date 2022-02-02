@@ -53,7 +53,7 @@ jobs:
    steps:
      - name: test
        run: |
-             echo ${{matrix.componentId}} 
+             echo ${{matrix.componentID}} 
          
        
      
