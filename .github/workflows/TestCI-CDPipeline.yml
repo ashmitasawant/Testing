@@ -34,7 +34,7 @@ jobs:
             out=($(
                   for i in ${componentIdsArray[@]}
                   do
-                    echo -ne "'$i',"
+                    echo -ne "'$i,"
                   done
                   ) )
                   output=${out:0:1}
