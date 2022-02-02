@@ -37,8 +37,8 @@ jobs:
                     echo -ne "'$i,"
                   done
                   ) )
-                  output=${out:0:1}
-                  echo ${output//,/, }
+                  output=${out}
+                  echo ${output//,/,}
             echo $out
             echo "::set-output name=componentID_Array::$componentIdsArray"
   
