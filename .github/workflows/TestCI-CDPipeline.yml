@@ -17,6 +17,7 @@ jobs:
       output1: ${{ steps.setProcessInfo.outputs.componentID }}
       output2: ${{ steps.setProcessInfo.outputs.environmentID }}
       output3: ${{ steps.setProcessInfo.outputs.packageVersion }}
+      output4: ${{ steps.setProcessInfo.outputs.componentID_Array }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -31,7 +32,8 @@ jobs:
             echo "::set-output name=componentID::$componentID"
             echo "::set-output name=environmentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
-            echo [$componentID]
+            componentIdsArray = $(echo [$componentID])
+            echo "::set-output name=componentID_Array::$componentIdsArray"
   
             
   createPackage:
@@ -43,7 +45,7 @@ jobs:
      
     runs-on: ubuntu-latest
     outputs:
-      output4: ${{ steps.response.outputs.packageId }}
+      output5: ${{ steps.response.outputs.packageId }}
     needs: getProcessInfo
     steps:
      - name: SetVariables
@@ -53,15 +55,19 @@ jobs:
      - name: Package Creation
        id: packageCreation
        uses: fjogeleit/http-request-action@master
-       with:
-        url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent'
-        method: 'POST'
-        contentType: 'application/json'
-        customHeaders: '{"accept": "application/json"}'
-        data: '{"componentId": ${{needs.getProcessInfo.outputs.output1}},"packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'
-        username: ${{env.MY_USERNAME}}
-        password: ${{env.MY_PASSWORD}}
-        
+     - run: |
+             arr=()
+             for i in "${{needs.getProcessInfo.outputs.output4}}"
+             do
+               with:
+                url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent'
+                method: 'POST'
+                contentType: 'application/json'
+                customHeaders: '{"accept": "application/json"}'
+                data: '{"componentId": ${{needs.getProcessInfo.outputs.output4}},"packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'
+                username: ${{env.MY_USERNAME}}
+                password: ${{env.MY_PASSWORD}}
+             done        
      - name: Show Response
        id: response
        run: |
