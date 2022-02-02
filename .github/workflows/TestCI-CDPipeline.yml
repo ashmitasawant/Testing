@@ -2,9 +2,7 @@ name: Deployment Pipeline
 
 # Controls when the workflow will run
 on:
-  push:
-    paths:
-     - 'ProcessInfo/ProcessDetails.json' 
+  push
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -59,7 +57,7 @@ jobs:
              arr=()
              for i in "${{needs.getProcessInfo.outputs.output4}}"
              do
-               uses: fjogeleit/http-request-action@master
+             - uses: fjogeleit/http-request-action@master
                with:
                 url: 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent'
                 method: 'POST'
