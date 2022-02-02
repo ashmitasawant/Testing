@@ -41,6 +41,7 @@ jobs:
                   echo ${componentIds//,/,}
             echo $componentIds
             echo "::set-output name=componentID_Array::$componentIds"
+            echo ${{outputs.output4}}
   
             
   createPackage:
@@ -52,7 +53,7 @@ jobs:
     needs: getProcessInfo
     strategy: 
      matrix:
-      componentIdsArray: ${{needs.getProcessInfo.outputs.output4}}
+      componentIdsArray: (${{needs.getProcessInfo.outputs.output4}})
      
     runs-on: ubuntu-latest
     outputs:
