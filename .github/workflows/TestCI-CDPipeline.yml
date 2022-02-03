@@ -51,9 +51,8 @@ jobs:
    steps:
      - name: test
        run: |
-            
-             array=($(
-                   for i in ${{array[@]}}
+             array1=($(
+                   for i in ${{matrix.array[@]}}
                         do
                           echo -ne "$i,"
                         done
