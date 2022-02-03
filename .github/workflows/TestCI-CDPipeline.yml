@@ -64,11 +64,11 @@ jobs:
                          --header 'authorization: Basic dHJhaW5pbmdhc2htaXRhc2F3YW50LUQ5UDhKNy5ZRzFGQTQ6OWJmZDM5NWUtMzYxZC00MWFkLTgxMDctMTU0ZjU5Mzg0MDJm' \
                          --header 'content-type: application/json' \
                          --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                         --data '{"componentId": ${{matrix.array}},"packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'
-                         echo $CODE`
+                         --data '{"componentId": ${{matrix.array}},"packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'`
+                         echo $CODE
                         done
                    ))
-             echo $array
+             echo $array1
             
         
   
