@@ -43,18 +43,28 @@ jobs:
             echo $componentIds
             echo "::set-output name=componentID_Array ::$componentIds"               
   createPackage:
+   environment: Dev
+   env: 
+      MY_USERNAME: ${{ secrets.MY_USERNAME }}
+      MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
    runs-on: ubuntu-latest
    strategy:
     matrix: 
       array: ${{fromJson(needs.getProcessInfo.outputs.output4)}}
    needs: getProcessInfo
    steps:
-     - name: test
-       run: |
+
+      - name: test
+        run: |
              array1=($(
-                   for i in ${{matrix.array[@]}}
+                   for i in ${{matrix.array}}
                         do
-                          echo -ne "$i,"
+                          CODE=`curl --write-out '%{http_code}' \
+                         --request POST \
+                         --header 'authorization: Basic dHJhaW5pbmdhc2htaXRhc2F3YW50LUQ5UDhKNy5ZRzFGQTQ6OWJmZDM5NWUtMzYxZC00MWFkLTgxMDctMTU0ZjU5Mzg0MDJm' \
+                         --header 'content-type: application/json' \
+                         --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
+                         --data '{"componentId": ${{matrix.array}},"packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'`
                         done
                    ))
              echo $array
