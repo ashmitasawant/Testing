@@ -46,7 +46,7 @@ jobs:
    runs-on: ubuntu-latest
    strategy:
     matrix: 
-      array: [bb076cd7-8f1e-42a7-843c-3b9c5dda0bb5,a7f1b658-ea28-4b36-9627-187f5d6f6446]
+      array: ${{needs.getProcessInfo.outputs.output4}}
    needs: getProcessInfo
    steps:
      - name: test
