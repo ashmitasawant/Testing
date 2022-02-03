@@ -46,7 +46,7 @@ jobs:
    runs-on: ubuntu-latest
    strategy:
     matrix: 
-      array: ${{toJson(needs.getProcessInfo.outputs.output4)}}
+      array: ${{fromJson(needs.getProcessInfo.outputs.output4)}}
    needs: getProcessInfo
    steps:
      - name: test
