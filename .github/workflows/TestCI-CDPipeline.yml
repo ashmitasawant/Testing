@@ -51,11 +51,14 @@ jobs:
    steps:
      - name: test
        run: |
-             echo ${{matrix.array}}
-             echo ${{needs.getProcessInfo.outputs.output4}}
-             
-         
-     
+            
+             array=($(
+                   for i in ${{matrix.array[@]}}
+                        do
+                          echo -ne "$i,"
+                        done
+                   ))
+             echo $array
             
         
   
