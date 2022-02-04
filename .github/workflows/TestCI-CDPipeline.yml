@@ -65,6 +65,7 @@ jobs:
                            --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
                            --data '{"componentId": ${{matrix.array}},"packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'`
                            echo $CODE
+                           
                  
         
   
