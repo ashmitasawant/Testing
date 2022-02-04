@@ -67,7 +67,8 @@ jobs:
                            --header 'accept: application/json' \
                            --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
                            --data '{"componentId": "${{matrix.array}}","packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'`
-                           response=${CODE%.200}
+                           response=${CODE%.400}
+                           echo $response
                            echo  "::set-output name=response::$response"
   getPackageCreationResponse:
    runs-on: ubuntu-latest
