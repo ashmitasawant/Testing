@@ -78,10 +78,8 @@ jobs:
    steps:
       - name: Show Response
         run: |
-             echo ${{fromJson(needs.createPackage.outputs.packageCreationResponse)}}
-             packageIds=$(echo ${{toJson(needs.createPackage.outputs.packageCreationResponse)}} | jq ".packageId" )
-             echo $packageIds
-             
+             echo ${{toJson(needs.createPackage.outputs.packageCreationResponse)}}
+            
                           
                  
         
