@@ -59,7 +59,7 @@ jobs:
             
                           CODE=`curl --write-out '%{http_code}' \
                            --request POST \
-                           --header 'authorization: Basic dHJhaW5pbmdhc2htaXRhc2F3YW50LUQ5UDhKNy5ZRzFGQTQ6OWJmZDM5NWUtMzYxZC00MWFkLTgxMDctMTU0ZjU5Mzg0MDJm' \
+                           --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
                            --header 'content-type: application/json' \
                            --header 'accept: application/json' \
                            --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
