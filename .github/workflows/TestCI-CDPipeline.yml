@@ -53,7 +53,7 @@ jobs:
    strategy:
     matrix: 
       componentIdsList: ${{fromJson(needs.getProcessInfo.outputs.output4)}}
-      packageIdsList: ${{toJson(steps.packageCreation.outputs.packageCreationResponse)}}
+      
       
    needs: getProcessInfo
    steps:
@@ -76,7 +76,6 @@ jobs:
    strategy:
     matrix:
      packageIdsList: ${{toJson(needs.createPackage.outputs.packageCreationResponse)}}
-	 
    needs: createPackage
    steps:
       - name: Show Response
