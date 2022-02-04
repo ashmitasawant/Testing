@@ -67,15 +67,16 @@ jobs:
                            --header 'content-type: application/json' \
                            --header 'accept: application/json' \
                            --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                           --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.5", "notes":"Package for deployment" }'`
+                           --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.6", "notes":"Package for deployment" }'`
                              
-                             echo  "::set-output name=response::$(echo ${CODE} | jq '.packageId')"
+                             packageIds=$(echo  "::set-output name=response::$(echo ${CODE} | jq '.packageId')")
+                             echo $packageIds
                              
   getPackageCreationResponse:
    runs-on: ubuntu-latest
    strategy:
     matrix:
-     packageIdsList: ${{toJson(needs.createPackage.outputs.packageCreationResponse)}}
+     packageIdsList: ${{fromJson(needs.createPackage.outputs.packageCreationResponse)}}
    needs: createPackage
    steps:
       - name: Show Response
