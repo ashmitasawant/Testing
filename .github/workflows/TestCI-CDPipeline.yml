@@ -73,12 +73,15 @@ jobs:
                              
   getPackageCreationResponse:
    runs-on: ubuntu-latest
-   
+   strategy:
+    matrix:
+     packageIdsList: ${{toJson(needs.createPackage.outputs.packageCreationResponse)}}
+	 
    needs: createPackage
    steps:
       - name: Show Response
         run: |
-             echo ${{toJson(needs.createPackage.outputs.packageCreationResponse)}} 
+             echo ${{matrix.packageIdsList}}
             
                           
                  
