@@ -67,9 +67,14 @@ jobs:
                            --header 'content-type: application/json' \
                            --header 'accept: application/json' \
                            --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                           --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.9", "notes":"Package for deployment" }'`
+                           --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.10", "notes":"Package for deployment" }'`
                              packageIds=$(echo ${CODE} | jq '.packageId')
                              echo $packageIds
+                             
+                             for i in ${packageIds[@]}
+                             do
+                                echo -ne "$i,"
+                             done
                              
                              
      
