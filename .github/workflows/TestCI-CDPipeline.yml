@@ -78,7 +78,8 @@ jobs:
                                 git config user.email ashmitasawant3@gmail.com
                                 git add .
                                 git commit -m "Published Changes"
-                                git config pull.rebase true
+                                git pull --rebase
+                                
                                 git push -f
                                 
                                 
