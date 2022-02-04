@@ -60,8 +60,7 @@ jobs:
         id: packageCreation
         run: |
             
-                          CODE=`curl --help \
-                           --request POST \
+                          CODE=`curl  --request POST \
                            --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
                            --header 'content-type: application/json' \
                            --header 'accept: application/json' \
