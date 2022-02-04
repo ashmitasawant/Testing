@@ -57,7 +57,7 @@ jobs:
       
    needs: getProcessInfo
    steps:
-
+      - uses: actions/checkout@v2
       - name: test
         id: packageCreation
         run: |
@@ -67,21 +67,18 @@ jobs:
                            --header 'content-type: application/json' \
                            --header 'accept: application/json' \
                            --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                           --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.6", "notes":"Package for deployment" }'`
+                           --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.7", "notes":"Package for deployment" }'`
+                             packageIds=$(echo ${CODE} | jq '.packageId')
+                             echo $packageIds >> PackageIds.txt
+                             git config user.name ashmitasawant
+                             git config user.email ashmitasawant3@gmail.com
+                             git add .
+                             git commit -m "Published Changes"
+                             git push 
                              
-                             packageIds=$(echo  "::set-output name=response::$(echo ${CODE} | jq '.packageId')")
-                             echo $packageIds
+     
                              
-  getPackageCreationResponse:
-   runs-on: ubuntu-latest
-   strategy:
-    matrix:
-     packageIdsList: ${{fromJson(needs.createPackage.outputs.packageCreationResponse)}}
-   needs: createPackage
-   steps:
-      - name: Show Response
-        run: |
-             echo ${{matrix.packageIdsList}}
+  
             
                           
                  
