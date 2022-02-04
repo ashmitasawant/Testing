@@ -69,10 +69,13 @@ jobs:
                            --data '{"componentId": "${{matrix.array}}","packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'`
                            
                            echo  "::set-output name=response::$CODE"
-                           
+  getPackageCreationResponse:
+   runs-on: ubuntu-latest
+   needs: createPackage
+   steps:
       - name: Show Response
         run: |
-             echo ${{steps.packageCreation.outputs.packageCreationResponse}} 
+             echo ${{needs.createPackage.outputs.packageCreationResponse}} 
                           
                  
         
