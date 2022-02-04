@@ -48,6 +48,8 @@ jobs:
       MY_USERNAME: ${{ secrets.MY_USERNAME }}
       MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
    runs-on: ubuntu-latest
+   outputs:
+    packageCreationResponse: ${{ steps.packageCreation.outputs.response }}
    strategy:
     matrix: 
       array: ${{fromJson(needs.getProcessInfo.outputs.output4)}}
@@ -55,6 +57,7 @@ jobs:
    steps:
 
       - name: test
+        id: packageCreation
         run: |
             
                           CODE=`curl --write-out '%{http_code}' \
@@ -65,7 +68,11 @@ jobs:
                            --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
                            --data '{"componentId": "${{matrix.array}}","packageVersion":${{needs.getProcessInfo.outputs.output3}}, "notes":"Package for deployment" }'`
                            
-                           echo $CODE
+                           echo  "::set-output name=response::$CODE"
+                           
+      - name: Show Response
+        run: |
+             echo ${{steps.packageCreation.outputs.packageCreationResponse}} 
                           
                  
         
