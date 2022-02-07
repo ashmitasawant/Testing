@@ -67,9 +67,7 @@ jobs:
                     for i in ${packages[@]}
                     do
                             rt=$( echo -ne "$i")
-                            echo $rt
-                            echo $rt
-                            echo $rt
+                            
                              CODE=`curl  --request POST \
                              --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
                              --header 'content-type: application/json' \
