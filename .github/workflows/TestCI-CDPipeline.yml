@@ -68,6 +68,11 @@ jobs:
                     do
                             rt=$( echo -ne "$i")
                             echo $rt
+                            echo $rt
+                            echo $rt
+
+
+                            
                     done
                              
   pushPackageIds:
