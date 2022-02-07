@@ -72,7 +72,7 @@ jobs:
                              --header 'content-type: application/json' \
                              --header 'accept: application/json' \
                              --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.32", "notes":"Package for deployment" }'`
+                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.33", "notes":"Package for deployment" }'`
                                echo $CODE
                                packageIds=$(echo ${CODE} | jq '.packageId')
                                echo $packageIds >> PackageIds.txt
@@ -81,7 +81,7 @@ jobs:
                                git add .
                                git commit -m "Published Changes"
                                git config pull.rebase false
-                               git push 
+                               git push --force origin main
                               
                                echo "::set-output name=packageId::[$packageIds]"       
                     done
