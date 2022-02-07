@@ -72,7 +72,7 @@ jobs:
                              --header 'content-type: application/json' \
                              --header 'accept: application/json' \
                              --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.36", "notes":"Package for deployment" }'`
+                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.37", "notes":"Package for deployment" }'`
                                echo $CODE
                                echo $packageIds >> PackageIds.txt
                                git config user.name ashmitasawant
