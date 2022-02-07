@@ -69,11 +69,11 @@ jobs:
                            --header 'content-type: application/json' \
                            --header 'accept: application/json' \
                            --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                           --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.25", "notes":"Package for deployment" }'`
+                           --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.26", "notes":"Package for deployment" }'`
                              echo $CODE
                              packageIds=$(echo ${CODE} | jq '.packageId')
                              echo $packageIds
-                             echo "::set-output name=packageId::$packageIds"
+                             echo "::set-output name=packageId::[$packageIds]"
                              
   pushPackageIds:
    runs-on: ubuntu-latest
