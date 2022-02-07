@@ -66,8 +66,7 @@ jobs:
                     packages=$(echo ${{needs.getProcessInfo.outputs.output4}})
                     for i in ${packages[@]}
                     do
-                            rt=$( echo -ne "$i")
-                            
+                             rt=$( echo -ne "$i")
                              CODE=`curl  --request POST \
                              --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
                              --header 'content-type: application/json' \
@@ -77,9 +76,7 @@ jobs:
                                echo $CODE
                                packageIds=$(echo ${CODE} | jq '.packageId')
                                echo $packageIds
-                               echo "::set-output name=packageId::[$packageIds]"
-
-                            
+                               echo "::set-output name=packageId::[$packageIds]"       
                     done
                              
   pushPackageIds:
