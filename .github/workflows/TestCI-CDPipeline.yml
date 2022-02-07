@@ -72,7 +72,7 @@ jobs:
                              --header 'content-type: application/json' \
                              --header 'accept: application/json' \
                              --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                             --data '{"componentId": ${rt},"packageVersion":"1.27", "notes":"Package for deployment" }'`
+                             --data '{"componentId": "${{rt}}","packageVersion":"1.27", "notes":"Package for deployment" }'`
                                echo $CODE
                                packageIds=$(echo ${CODE} | jq '.packageId')
                                echo $packageIds
