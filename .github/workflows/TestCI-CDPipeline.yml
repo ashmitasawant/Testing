@@ -64,7 +64,7 @@ jobs:
         id: packageCreation
         run: |
                     echo ${{needs.getProcessInfo.outputs.output4}}
-                    for i in ${{fromJson(needs.getProcessInfo.outputs.output4)}}
+                    for i in ${{needs.getProcessInfo.outputs.output4}}
                     do
                           CODE=`curl  --request POST \
                            --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
