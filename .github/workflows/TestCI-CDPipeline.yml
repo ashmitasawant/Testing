@@ -56,7 +56,7 @@ jobs:
 
                                echo $CODE
                                packageIds=$(cat << EOF
-                                $(echo ${CODE} | jq '.packageId')
+                               $(echo ${CODE} | jq '.packageId')
                                EOF
                                )
                                echo "::set-output name=content::$packageIds"
