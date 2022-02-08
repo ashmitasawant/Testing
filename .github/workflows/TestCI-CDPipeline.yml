@@ -63,16 +63,17 @@ jobs:
       - name: test
         id: packageCreation
         run: |
-                    packages=$(echo ${{needs.getProcessInfo.outputs.output4}})
-                    for i in ${packages[@]}
+                    components=$(echo ${{needs.getProcessInfo.outputs.output4}})
+                    for i in ${components[@]}
                     do
                              rt=$( echo -ne "$i")
+                             echo $rt
                              CODE=`curl  --request POST \
                              --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
                              --header 'content-type: application/json' \
                              --header 'accept: application/json' \
                              --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.41", "notes":"Package for deployment" }'`
+                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.42", "notes":"Package for deployment" }'`
                                
                                echo $CODE
                                packageIds=$(echo ${CODE} | jq '.packageId')
