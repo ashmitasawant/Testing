@@ -61,7 +61,7 @@ jobs:
       - name: test
         id: packageCreation
         run: |
-               i= (a b c)
+               i= [a,b,c]
                echo ${i[0]}
                             
                         
