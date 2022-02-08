@@ -31,9 +31,8 @@ jobs:
             echo "::set-output name=componentID::$componentID"
             echo "::set-output name=environmentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
-            componentIdsArray=($(echo $componentID))
             echo "ComponentIds are:" $componentID
-            echo "::set-output name=componentID_Array ::($componentID)"       
+            echo "::set-output name=componentID_Array ::($componentID))"       
             
   createPackage:
    environment: Dev
