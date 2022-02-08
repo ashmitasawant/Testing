@@ -32,7 +32,7 @@ jobs:
             echo "::set-output name=environmentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
             componentIdsArray=($(echo $componentID))
-            echo "ComponentIds are:" $componentIdsArray
+            echo "ComponentIds are:" $componentID
             componentIds=($(
                   for i in ${componentIdsArray[@]}
                   do
