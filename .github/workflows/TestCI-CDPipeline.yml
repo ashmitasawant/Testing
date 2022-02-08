@@ -52,9 +52,7 @@ jobs:
    outputs:
     packageCreationResponse: ${{ steps.packageCreation.outputs.response }}
     packageId: ${{ steps.packageCreation.outputs.packageId }}
-   strategy:
-    matrix: 
-      componentIdsList: ${{fromJson(needs.getProcessInfo.outputs.output4)}}
+  
       
       
    needs: getProcessInfo
@@ -64,7 +62,7 @@ jobs:
         id: packageCreation
         run: |
                    
-                            for i in 1 2 3 4 5
+                            for i in ${{fromJson(needs.getProcessInfo.outputs.output4)}}
                             do
                                echo $i
                                
