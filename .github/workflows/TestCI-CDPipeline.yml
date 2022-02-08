@@ -28,12 +28,26 @@ jobs:
             echo $packageVersion
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[0].environmentID')
-            echo "::set-output name=componentID::$componentID"
+            echo "::set-output name=componentID::($componentID)"
             echo "::set-output name=environmentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
+       
             echo "ComponentIds are:" $componentID
            
-               
+  createPackage:
+   environment: Dev
+   env: 
+      MY_USERNAME: ${{ secrets.MY_USERNAME }}
+      MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
+   runs-on: ubuntu-latest   
+   needs: getProcessInfo
+   steps:
+      - uses: actions/checkout@v2
+      - name: test
+        id: packageCreation
+        run: |
+               in=${{needs.getProcessInfo.outputs.output1}}
+               echo ${in[0]}             
   
                              
                              
