@@ -28,7 +28,7 @@ jobs:
             echo $packageVersion
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[0].environmentID')
-            echo "::set-output name=componentID::($componentID)"
+            echo "::set-output name=componentID::$componentID"
             echo "::set-output name=environmentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
        
