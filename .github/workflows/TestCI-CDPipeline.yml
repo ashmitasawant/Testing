@@ -55,10 +55,8 @@ jobs:
                                --data '{"componentId": "'$i'","packageVersion":"1.56", "notes":"Package for deployment" }'`
 
                                echo $CODE
-                               packageIds=$(cat << EOF
-                               $(echo ${CODE} | jq '.packageId')
-                               EOF
-                               )
+                               ids=$(echo ${CODE} | jq '.packageId')
+                               packageIds=$(cat << EOF $ids EOF )
                                echo "::set-output name=content::$packageIds"
                                             
                done
