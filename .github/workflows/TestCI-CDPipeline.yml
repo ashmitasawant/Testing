@@ -64,14 +64,9 @@ jobs:
         id: packageCreation
         run: |
                    
-                            for i in ${{componentIdsList}}
+                            for i in 1 2 3 4 5
                             do
-                             CODE=`curl  --request POST \
-                             --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
-                             --header 'content-type: application/json' \
-                             --header 'accept: application/json' \
-                             --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                             --data '{"componentId": "$i","packageVersion":"1.45", "notes":"Package for deployment" }'`
+                               echo $i
                                
                                echo $CODE
                                packageIds=$(echo ${CODE} | jq '.packageId')
