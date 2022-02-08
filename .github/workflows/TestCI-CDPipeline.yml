@@ -61,7 +61,7 @@ jobs:
       - name: test
         id: packageCreation
         run: |
-               i= [a,b,c]
+               i= ${{needs.getProcessInfo.outputs.output4}}
                echo ${i[0]}
                             
                         
