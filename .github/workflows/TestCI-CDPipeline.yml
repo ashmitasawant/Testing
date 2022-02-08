@@ -47,7 +47,7 @@ jobs:
       - name: test
         id: packageCreation
         run: |
-               for i in $(${{needs.getProcessInfo.outputs.output1}})
+               for i in ${{needs.getProcessInfo.outputs.output1}}
                do
                  echo $i
                done
