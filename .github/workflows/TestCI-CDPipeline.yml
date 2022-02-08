@@ -38,8 +38,7 @@ jobs:
   createPackage:
    environment: Dev
    env: 
-      MY_USERNAME: ${{ secrets.MY_USERNAME }}
-      MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
+      MY_AUTHORIZATION: ${{ secrets.MY_AUTHORIZATION }}
    runs-on: ubuntu-latest   
    needs: getProcessInfo
    steps:
@@ -50,11 +49,11 @@ jobs:
                for i in ${{needs.getProcessInfo.outputs.output1}}
                do
                  CODE=`curl  --request POST \
-                               --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
+                               --header 'authorization: ${{env.MY_AUTHORIZATION}}' \
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.49", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.50", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                packageIds=$(echo ${CODE} | jq '.packageId')
