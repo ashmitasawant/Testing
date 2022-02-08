@@ -63,17 +63,14 @@ jobs:
       - name: test
         id: packageCreation
         run: |
-                    components=${{needs.getProcessInfo.outputs.output4}}
-                    for i in ${components[@]}
-                    do
-                             rt=$( echo -ne "$i")
-                             echo $rt
+                   
+                            
                              CODE=`curl  --request POST \
                              --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
                              --header 'content-type: application/json' \
                              --header 'accept: application/json' \
                              --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.43", "notes":"Package for deployment" }'`
+                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.44", "notes":"Package for deployment" }'`
                                
                                echo $CODE
                                packageIds=$(echo ${CODE} | jq '.packageId')
@@ -86,7 +83,7 @@ jobs:
                                git config pull.rebase false
                                git push --force origin main
                                echo "::set-output name=packageId::[$packageIds]"       
-                    done
+                  
                              
   
                              
