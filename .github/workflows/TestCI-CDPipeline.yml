@@ -31,7 +31,7 @@ jobs:
             echo "::set-output name=componentID::$componentID"
             echo "::set-output name=environmentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
-            componentIdsArray=($(echo [$componentID]))
+            componentIdsArray=($(echo $componentID))
             componentIds=($(
                   for i in ${componentIdsArray[@]}
                   do
@@ -41,7 +41,7 @@ jobs:
                   componentIds=${componentIds:0:-1}
                   echo ${componentIds//,/,}
             echo $componentIds
-            echo "::set-output name=componentID_Array ::$componentIds"       
+            echo "::set-output name=componentID_Array ::($componentIds)"       
             
   createPackage:
    environment: Dev
