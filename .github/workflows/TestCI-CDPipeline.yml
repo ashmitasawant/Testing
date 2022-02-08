@@ -64,7 +64,7 @@ jobs:
         id: packageCreation
         run: |
                    
-                            for i in ${{matrix.componentIdsList}}
+                            for i in ${{componentIdsList}}
                             do
                              CODE=`curl  --request POST \
                              --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
