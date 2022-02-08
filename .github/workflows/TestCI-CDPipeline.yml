@@ -63,7 +63,7 @@ jobs:
       - name: test
         id: packageCreation
         run: |
-                    components=$(echo ${{needs.getProcessInfo.outputs.output4}})
+                    components=${{needs.getProcessInfo.outputs.output4}}
                     for i in ${components[@]}
                     do
                              rt=$( echo -ne "$i")
@@ -73,7 +73,7 @@ jobs:
                              --header 'content-type: application/json' \
                              --header 'accept: application/json' \
                              --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.42", "notes":"Package for deployment" }'`
+                             --data '{"componentId": "${{matrix.componentIdsList}}","packageVersion":"1.43", "notes":"Package for deployment" }'`
                                
                                echo $CODE
                                packageIds=$(echo ${CODE} | jq '.packageId')
