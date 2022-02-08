@@ -12,11 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     
     outputs:
-      output1: ${{ steps.setProcessInfo.outputs.componentID }}
-      output2: ${{ steps.setProcessInfo.outputs.environmentID }}
-      output3: ${{ steps.setProcessInfo.outputs.packageVersion }}
-      output4: ${{ steps.setProcessInfo.outputs.componentID_Array }}
-    # Steps represent a sequence of tasks that will be executed as part of the job
+      componentIds: ${{ steps.setProcessInfo.outputs.componentID }}
+      packageVersion: ${{ steps.setProcessInfo.outputs.packageVersion }}
+      # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Get Process Info
@@ -29,7 +27,6 @@ jobs:
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[0].environmentID')
             echo "::set-output name=componentID::$componentID"
-            echo "::set-output name=environmentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
             ComponentsArray=$(echo $componentID)
             echo "::set-output name=componentID::$ComponentsArray"
@@ -46,14 +43,14 @@ jobs:
       - name: test
         id: packageCreation
         run: |
-               for i in ${{needs.getProcessInfo.outputs.output1}}
+               for i in ${{needs.getProcessInfo.outputs.componentIds}}
                do
                  CODE=`curl  --request POST \
                                --header 'authorization: ${{env.MY_AUTHORIZATION}}' \
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.50", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.51", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                packageIds=$(echo ${CODE} | jq '.packageId')
