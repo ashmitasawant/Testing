@@ -65,7 +65,7 @@ jobs:
                             
                             for i in ${{needs.getProcessInfo.outputs.output4}}
                             do
-                               echo $i[0]
+                               echo ${i[0]}
                                CODE=`curl  --request POST \
                                --header 'authorization: Basic Qk9PTUlfVE9LRU4uYXNobWl0YS5zYXdhbnRAbmVvc2FscGhhLmNvbTpiZjIyMTExYS0zN2MwLTRhZTItYmFhNC05ZDdlNzc2NzMxMWE=' \
                                --header 'content-type: application/json' \
