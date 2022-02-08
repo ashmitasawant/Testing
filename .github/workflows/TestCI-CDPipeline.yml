@@ -47,7 +47,7 @@ jobs:
       - name: test
         id: packageCreation
         run: |
-               in=${{needs.getProcessInfo.outputs.output1}}
+               in=(${{needs.getProcessInfo.outputs.output1}})
                echo ${in[0]}             
   
                              
