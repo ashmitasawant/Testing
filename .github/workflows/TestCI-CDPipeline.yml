@@ -13,6 +13,7 @@ jobs:
     
     outputs:
       componentIds: ${{ steps.setProcessInfo.outputs.componentID }}
+      environmentIds: ${{ steps.setProcessInfo.outputs.environmentID }}
       packageVersion: ${{ steps.setProcessInfo.outputs.packageVersion }}
       # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -30,9 +31,9 @@ jobs:
             echo "::set-output name=componentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
             ComponentsArray=$(echo $componentID)
+            EnvironmenIdstArray=$(echo $environmentID)
             echo "::set-output name=componentID::$ComponentsArray"
-            echo "Environments are:" $environmentID
-            
+            echo "::set-output name=environmentID::$EnvironmenIdstArray"            
            
   createPackage:
    environment: Dev
@@ -55,7 +56,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.67", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.68", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                
