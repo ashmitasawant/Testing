@@ -53,12 +53,12 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.61", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.62", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
-                               packageIdsArray+="$packageIds"
+                               packageIdsArray+="$packageIds "
                                
                                             
                done
