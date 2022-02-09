@@ -52,15 +52,15 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.56", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.57", "notes":"Package for deployment" }'`
 
                                echo $CODE
-                               ids=$(echo ${CODE} | jq '.packageId')
-                               packageIds=$(cat << EOF $ids EOF )
+                               
+                               packageIds=$(echo ${CODE} | jq '.packageId')
                                echo "::set-output name=content::$packageIds"
                                             
                done
-      
+               echo $packageIds
       - name: display string
         run: |
           echo "The string is: ${{ steps.packageCreation.outputs.content }}"
