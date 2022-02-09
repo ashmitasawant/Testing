@@ -45,7 +45,7 @@ jobs:
       - name: Package Creation
         id: packageCreation
         run: |
-               a=[]
+               packageIdsArray=[]
                for i in ${{needs.getProcessInfo.outputs.componentIds}}
                do
                  CODE=`curl  --request POST \
@@ -53,21 +53,17 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.58", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.59", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
-                               a+=$packageIds
-                               echo "::set-output name=content::$packageIds"
+                               packageIdsArray+=$packageIds
+                               
                                             
                done
-               echo $a
-      - name: display string
-        run: |
-          echo "The string is: ${{ steps.packageCreation.outputs.content }}"
-
-  
+               echo "::set-output name=packageIds::$packageIdsArray"
+     
   deployPackage: 
     runs-on: ubuntu-latest    
     needs: [createPackage,getProcessInfo]
