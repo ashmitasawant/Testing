@@ -25,11 +25,13 @@ jobs:
             packageVersion=$(echo  ${ProcessDetails} | jq '.[] | .packageVersion')
             echo $packageVersion
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
-            environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[0].environmentID')
+            environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
             echo "::set-output name=componentID::$componentID"
+            echo "::set-output name=componentID::$environmentID"
             echo "::set-output name=packageVersion::$packageVersion"
             ComponentsArray=$(echo $componentID)
             echo "::set-output name=componentID::$ComponentsArray"
+            echo "Environments are:" $environmentID
             
            
   createPackage:
@@ -53,7 +55,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.66", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.67", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                
