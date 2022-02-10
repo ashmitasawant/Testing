@@ -57,7 +57,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.69", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.70", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                
@@ -80,15 +80,17 @@ jobs:
      - name: Package Deploy
        id: packageDeploy
        run: |
-             echo ${{needs.createPackage.outputs.packageId}}
-             for p in ${{needs.createPackage.outputs.packageId}}
+             packages=${{needs.createPackage.outputs.packageId}}
+             environments=${{needs.getProcessInfo.outputs.environmentIds}}
+             for ((i=0;i<${#packages[@]};i++))
+            
                do
                  CODE=`curl  --request POST \
                                --header 'authorization: ${{env.MY_AUTHORIZATION}}' \
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/DeployedPackage' \
-                               --data '{"environmentId": "${{env.DEVENVIRONMENT_ID}}","packageId": "'$p'"}'`
+                               --data '{"packageId": "'${packages[$i]}'","environmentId": "${environments[$i]}"}'`
                                
                                echo $CODE              
                done         
