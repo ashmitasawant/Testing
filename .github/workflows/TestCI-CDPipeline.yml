@@ -33,7 +33,7 @@ jobs:
             echo "::set-output name=componentIds::$ComponentsArray"
             ProcessNamesArray=$(echo $processName)
             echo $ProcessNamesArray
-            echo "::set-output name=processNames::($ProcessNamesArray)"
+            echo "::set-output name=processNames::$ProcessNamesArray"
             
             
            
@@ -58,7 +58,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.88", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.89", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
