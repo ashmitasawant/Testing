@@ -30,7 +30,7 @@ jobs:
             
             echo "::set-output name=packageVersion::$packageVersion"
             ComponentsArray=$(echo $componentID)
-            echo "::set-output name=componentIds::$componentID"
+            echo "::set-output name=componentIds::$ComponentsArray"
             
             
            
@@ -55,7 +55,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.81", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.82", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
