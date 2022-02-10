@@ -13,7 +13,6 @@ jobs:
     
     outputs:
       componentIds: ${{ steps.setProcessInfo.outputs.componentID }}
-      environmentIds: ${{ steps.setProcessInfo.outputs.environmentId }}
       packageVersion: ${{ steps.setProcessInfo.outputs.packageVersion }}
       # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -26,15 +25,12 @@ jobs:
             packageVersion=$(echo  ${ProcessDetails} | jq '.[] | .packageVersion')
             echo $packageVersion
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
-            environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
-           
-            
+            environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[0].environmentID')
+            echo "::set-output name=componentID::$componentID"
             echo "::set-output name=packageVersion::$packageVersion"
             ComponentsArray=$(echo $componentID)
-            EnvironmenIdsArray=$(echo $environmentID)
-            echo "Environments are:" $EnvironmenIdsArray
             echo "::set-output name=componentID::$ComponentsArray"
-            echo "::set-output name=environmentId::$EnvironmenIdsArray"            
+            
            
   createPackage:
    environment: Dev
@@ -57,8 +53,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.76", "notes":"Package for deployment" }'`
-
+                               --data '{"componentId": "'$i'","packageVersion":"1.77", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
@@ -73,33 +68,24 @@ jobs:
    environment: Dev
    env: 
       MY_AUTHORIZATION: ${{ secrets.MY_AUTHORIZATION }}
-      
+      DEVENVIRONMENT_ID: ${{ secrets.DEVENVIRONMENT_ID }}
    runs-on: ubuntu-latest    
    needs: [createPackage,getProcessInfo]
    steps:     
      - name: Package Deploy
        id: packageDeploy
        run: |
-             packages=${{needs.createPackage.outputs.packageId}}
-             environments=${{needs.getProcessInfo.outputs.environmentIds}}
-             echo $environments
-             for ((i=0;i<${#packages[@]};i++))
-            
+             echo ${{needs.createPackage.outputs.packageId}}
+             for p in ${{needs.createPackage.outputs.packageId}}
                do
                  CODE=`curl  --request POST \
                                --header 'authorization: ${{env.MY_AUTHORIZATION}}' \
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/DeployedPackage' \
-                               --data '{"packageId": "\"${packages[$i]}\"","environmentId": "\"${environments[$i]}\""}'`
+                               --data '{"environmentId": "${{env.DEVENVIRONMENT_ID}}","packageId": "'$p'"}'`
                                
                                echo $CODE              
                done         
      
                              
-  
-            
-                          
-                 
-        
-  
