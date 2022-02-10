@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     
     outputs:
-      componentIds: ${{ steps.setProcessInfo.outputs.componentID }}
+      componentIds: ${{ steps.setProcessInfo.outputs.componentIds }}
       packageVersion: ${{ steps.setProcessInfo.outputs.packageVersion }}
       # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -24,13 +24,13 @@ jobs:
             ProcessDetails=$(cat ./ProcessInfo/ProcessDetails.json)
             packageVersion=$(echo  ${ProcessDetails} | jq '.[] | .packageVersion')
             echo $packageVersion
-            
+            processName=$(echo ${ProcessDetails} | jq '.[] | .processDetails[].processName)
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
             
             echo "::set-output name=packageVersion::$packageVersion"
             ComponentsArray=$(echo $componentID)
-            echo "::set-output name=componentID::$ComponentsArray"
+            echo "::set-output name=componentIds::$componentID"
             
             
            
@@ -55,7 +55,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.80", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.81", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
