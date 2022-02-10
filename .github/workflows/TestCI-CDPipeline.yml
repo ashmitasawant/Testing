@@ -57,7 +57,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.73", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.74", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                
@@ -91,7 +91,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/DeployedPackage' \
-                               --data '{"packageId": "${packages[$i]}","environmentId": "${environments[$i]}"}'`
+                               --data '{"packageId": "'${packages[$i]}'","environmentId": "'${environments[$i]}'"}'`
                                
                                echo $CODE              
                done         
