@@ -32,6 +32,7 @@ jobs:
             ComponentsArray=$(echo $componentID)
             echo "::set-output name=componentIds::$ComponentsArray"
             ProcessNamesArray=$(echo $processName)
+            echo $ProcessNamesArray
             echo "::set-output name=processNames::$ProcessNamesArray"
             
             
