@@ -57,7 +57,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.71", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.72", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                
@@ -73,7 +73,7 @@ jobs:
    environment: Dev
    env: 
       MY_AUTHORIZATION: ${{ secrets.MY_AUTHORIZATION }}
-      DEVENVIRONMENT_ID: ${{ secrets.DEVENVIRONMENT_ID }}
+      
    runs-on: ubuntu-latest    
    needs: [createPackage,getProcessInfo]
    steps:     
