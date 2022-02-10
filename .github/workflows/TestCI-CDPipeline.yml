@@ -13,7 +13,7 @@ jobs:
     
     outputs:
       componentIds: ${{ steps.setProcessInfo.outputs.componentID }}
-      environmentIds: ${{ steps.setProcessInfo.outputs.environmentID }}
+      environmentIds: ${{ steps.setProcessInfo.outputs.environmentId }}
       packageVersion: ${{ steps.setProcessInfo.outputs.packageVersion }}
       # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -27,14 +27,14 @@ jobs:
             echo $packageVersion
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
-            echo "::set-output name=componentID::$componentID"
-            echo "::set-output name=componentID::$environmentID"
+           
+            
             echo "::set-output name=packageVersion::$packageVersion"
             ComponentsArray=$(echo $componentID)
-            EnvironmenIdstArray=$(echo $environmentID)
-            echo "Environments are:" $EnvironmenIdstArray
+            EnvironmenIdsArray=$(echo $environmentID)
+            echo "Environments are:" $EnvironmenIdsArray
             echo "::set-output name=componentID::$ComponentsArray"
-            echo "::set-output name=environmentID::$EnvironmenIdstArray"            
+            echo "::set-output name=environmentId::$EnvironmenIdsArray"            
            
   createPackage:
    environment: Dev
@@ -57,7 +57,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.70", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.71", "notes":"Package for deployment" }'`
 
                                echo $CODE
                                
@@ -82,6 +82,7 @@ jobs:
        run: |
              packages=${{needs.createPackage.outputs.packageId}}
              environments=${{needs.getProcessInfo.outputs.environmentIds}}
+             echo $environments
              for ((i=0;i<${#packages[@]};i++))
             
                do
