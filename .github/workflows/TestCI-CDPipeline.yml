@@ -27,7 +27,7 @@ jobs:
             
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
-            echo "::set-output name=componentID::$componentID"
+            
             echo "::set-output name=packageVersion::$packageVersion"
             ComponentsArray=$(echo $componentID)
             echo "::set-output name=componentID::$ComponentsArray"
@@ -55,7 +55,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.79", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.80", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
