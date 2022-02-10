@@ -24,7 +24,7 @@ jobs:
             ProcessDetails=$(cat ./ProcessInfo/ProcessDetails.json)
             packageVersion=$(echo  ${ProcessDetails} | jq '.[] | .packageVersion')
             echo $packageVersion
-            processName=$(echo ${ProcessDetails} | jq '.[] | .processDetails[].processName)
+            processName=$(echo ${ProcessDetails} | jq '.[] | .processDetails[].processName')
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
             
