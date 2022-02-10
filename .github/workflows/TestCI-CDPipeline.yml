@@ -14,6 +14,7 @@ jobs:
     outputs:
       componentIds: ${{ steps.setProcessInfo.outputs.componentIds }}
       packageVersion: ${{ steps.setProcessInfo.outputs.packageVersion }}
+      processNames: ${{steps.setProcessInfo.outputs.processNames}}
       # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -27,10 +28,11 @@ jobs:
             processName=$(echo ${ProcessDetails} | jq '.[] | .processDetails[].processName')
             componentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].componentID')
             environmentID=$(echo  ${ProcessDetails} | jq '.[] | .processDetails[].environmentID')
-            
             echo "::set-output name=packageVersion::$packageVersion"
             ComponentsArray=$(echo $componentID)
             echo "::set-output name=componentIds::$ComponentsArray"
+            ProcessNamesArray=$(echo $processName)
+            echo "::set-output name=processNames::$ProcessNamesArray"
             
             
            
@@ -55,7 +57,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.82", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.83", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
@@ -96,4 +98,4 @@ jobs:
    steps:     
      - name: Process Execution
        run: |
-             if(
+             echo ${{needs.getProcessInfo.outputs.processNames}}
