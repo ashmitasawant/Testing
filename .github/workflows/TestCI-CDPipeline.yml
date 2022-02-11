@@ -58,7 +58,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.108", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.109", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
@@ -119,7 +119,7 @@ jobs:
                         else 
                            echo $CODE
                         fi
-             else
+             else if [[ ${processes[*]} =~ (^|[[:space:]])TestForWS($|[[:space:]]) ]]; 
                   CODE=`curl --write-out '%{http_code}' \
                         --request POST \
                         --header 'authorization: Basic dHJhaW5pbmdhc2htaXRhc2F3YW50LUQ5UDhKNy5ZRzFGQTQ6OWJmZDM5NWUtMzYxZC00MWFkLTgxMDctMTU0ZjU5Mzg0MDJm' \
