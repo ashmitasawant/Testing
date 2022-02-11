@@ -58,7 +58,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.96", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.97", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
@@ -99,7 +99,7 @@ jobs:
    steps:     
      - name: Process Execution
        run: |
-             processes=($(echo ${{needs.getProcessInfo.outputs.processNames}}))
+             processes=$(echo ${{needs.getProcessInfo.outputs.processNames}})
              processArray=$(echo ${processes[*]})
-             echo $processArray
+             echo ($processArray)
 
