@@ -58,7 +58,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.110", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.111", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
@@ -119,7 +119,8 @@ jobs:
                         else 
                            echo $CODE
                         fi
-             elif [[ ${processes[*]} =~ (^|[[:space:]])TestForWS($|[[:space:]]) ]]; 
+             fi
+             if [[ ${processes[*]} =~ (^|[[:space:]])TestForWS($|[[:space:]]) ]]; 
              then
                   CODE=`curl --write-out '%{http_code}' \
                         --request POST \
@@ -137,6 +138,4 @@ jobs:
                         else 
                            echo $CODE
                         fi
-             else 
-                   echo "No processes match to execute."
              fi 
