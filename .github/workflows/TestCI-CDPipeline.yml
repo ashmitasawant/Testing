@@ -58,11 +58,18 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "'$i'","packageVersion":"1.112", "notes":"Package for deployment" }'`
+                               --data '{"componentId": "'$i'","packageVersion":"1.113", "notes":"Package for deployment" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
                                packageIdsArray+="$packageIds "
+                               echo $packageIdsArray >> PackageIds.txt
+                               git config user.name ashmitasawant
+                               git config user.email ashmitasawant3@gmail.com
+                               git add .
+                               git commit -m "Published Changes"
+                               git config pull.rebase false
+                               git push --force origin main
                                
                                             
                done
