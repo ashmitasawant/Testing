@@ -56,7 +56,7 @@ jobs:
                               "componentVersion": "${{needs.createPackage.outputs.componentVersion}}"
                             }")
              echo $details 
-             echo ${{toJson(details)}} >> packages.txt
+             echo ${{ toJson($details) }} >> packages.txt
                               
                                git config user.name ashmitasawant
                                git config user.email ashmitasawant3@gmail.com
