@@ -14,6 +14,10 @@ jobs:
     env: 
      MY_AUTHORIZATION: ${{ secrets.MY_AUTHORIZATION }}
     runs-on: ubuntu-latest
+    outputs:
+     packageId: ${{ steps.packageCreate.outputs.packageIds }}
+     componentId: ${{steps.packageCreate.outputs.componentIds}}
+     componentVersion: ${{steps.packageCreate.outputs.componentVersion}}
     
    
     steps:
@@ -27,20 +31,27 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "aafd5e29-e75d-4bdb-9ec9-5b94ffd024d4","packageVersion":"v1.1", "notes":"Initial Package" }'`
+                               --data '{"componentId": "aafd5e29-e75d-4bdb-9ec9-5b94ffd024d4","packageVersion":"v1.2", "notes":"Initial Package" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
                                componentIds=$(echo ${CODE} | jq '.componentId')
                                componentVersion=$(echo ${CODE} | jq '.componentVersion')
+                               
+                               echo "::set-output name=packageIds::$packageIds"
+                               echo "::set-output name=componentIds::$componentIds"
+                               echo "::set-output name=componentVersions::$componentVersion"
+               
+  getInfo:
+   runs-on: ubuntu-latest
+   needs: createPackage
+   steps:
+     - name: Getting Information 
+       id: settingInfo
+       run: |
+             echo "{
+                    "packageId": "${{needs.createPackage.outputs.packageId}}",
+                    "componentId": "${{needs.createPackage.outputs.componentId",
+                    "componentVersion": "${{needs.createPackage.outputs.componentVersion"
+                  }"
                               
-                               echo $packageIds >> packages.txt
-                               echo $componentIds >> packages.txt
-                               echo $componentVersion >> packages.txt
-
-                               git config user.name ashmitasawant
-                               git config user.email ashmitasawant3@gmail.com
-                               git add .
-                               git commit -m "Published Changes"
-                               git config pull.rebase false
-                               git push --force origin main
