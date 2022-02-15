@@ -1,0 +1,47 @@
+name: Rollback Deployment
+
+# Controls when the workflow will run
+on:
+  push:
+   
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  createPackage:
+    # The type of runner that the job will run on
+    environment: Dev
+    env: 
+      MY_USERNAME: ${{ secrets.MY_USERNAME }}
+      MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
+    runs-on: ubuntu-latest
+    
+   
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Create Package
+        uses: actions/checkout@v2
+      - id: packageCreate
+        run: |
+              CODE=`curl  --request POST \
+                               --header 'authorization: ${{env.MY_AUTHORIZATION}}' \
+                               --header 'content-type: application/json' \
+                               --header 'accept: application/json' \
+                               --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
+                               --data '{"componentId": "aafd5e29-e75d-4bdb-9ec9-5b94ffd024d4","packageVersion":"v1.1", "notes":"Initial Package" }'`
+                               echo $CODE
+                               
+                               packageIds=$(echo ${CODE} | jq '.packageId')
+                               componentIds=$(echo ${CODE} | jq '.componentId')
+                               componentVersion=$(echo ${CODE} | jq '.componentVersion')
+                              
+                               echo $packageIds >> packages.txt
+                               echo $componentIds >> packages.txt
+                               echo $componentVersion >> packages.txt
+
+                               git config user.name ashmitasawant
+                               git config user.email ashmitasawant3@gmail.com
+                               git add .
+                               git commit -m "Published Changes"
+                               git config pull.rebase false
+                               git push --force origin main
