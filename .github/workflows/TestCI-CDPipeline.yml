@@ -121,11 +121,6 @@ jobs:
                                       "name":"Ashmita",
                                       "age":25,
                                       "role":"Software Engineer"
-                                     }'
-                        --data '    {
-                                      "name":"Krisha",
-                                      "age":27,
-                                      "role":"Software Developer"
                                      }'`
                         if [[ $CODE == *"200"* ]]
                         then
