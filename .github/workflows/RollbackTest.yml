@@ -51,7 +51,7 @@ jobs:
        run: |
              echo "{
                     "packageId": "${{needs.createPackage.outputs.packageId}}",
-                    "componentId": "${{needs.createPackage.outputs.componentId",
-                    "componentVersion": "${{needs.createPackage.outputs.componentVersion"
+                    "componentId": "${{needs.createPackage.outputs.componentId}}",
+                    "componentVersion": "${{needs.createPackage.outputs.componentVersion}}"
                   }"
                               
