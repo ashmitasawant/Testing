@@ -12,8 +12,7 @@ jobs:
     # The type of runner that the job will run on
     environment: Dev
     env: 
-      MY_USERNAME: ${{ secrets.MY_USERNAME }}
-      MY_PASSWORD: ${{ secrets.MY_PASSWORD }}
+     MY_AUTHORIZATION: ${{ secrets.MY_AUTHORIZATION }}
     runs-on: ubuntu-latest
     
    
