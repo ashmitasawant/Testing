@@ -60,7 +60,7 @@ jobs:
         name: "details.json"
         json: '{ "packageId": "${{needs.createPackage.outputs.packageId}}","componentId": "${{needs.createPackage.outputs.componentId}}","componentVersion": "${{needs.createPackage.outputs.componentVersion}}}'
         dir: 'ProcessInfo/'
-        run: |
+     - run: |
               git config user.name ashmitasawant
                                git config user.email ashmitasawant3@gmail.com
                                git add details.json
