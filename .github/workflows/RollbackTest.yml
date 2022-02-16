@@ -32,7 +32,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "aafd5e29-e75d-4bdb-9ec9-5b94ffd024d4","packageVersion":"v1.26", "notes":"Initial Package" }'`
+                               --data '{"componentId": "aafd5e29-e75d-4bdb-9ec9-5b94ffd024d4","packageVersion":"v1.27", "notes":"Initial Package" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
@@ -59,6 +59,7 @@ jobs:
         
              details=$(echo '{
                               "packageId": ${{needs.createPackage.outputs.packageId}},
+                              "packageVersion": ${{needs.createPackage.outputs.packageVersion}},
                               "componentId": ${{needs.createPackage.outputs.componentId}},
                               "componentVersion": ${{needs.createPackage.outputs.componentVersion}}
                       }')
