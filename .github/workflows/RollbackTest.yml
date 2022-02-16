@@ -61,8 +61,8 @@ jobs:
                               "componentId": "${{needs.createPackage.outputs.componentId}}",
                               "componentVersion": "${{needs.createPackage.outputs.componentVersion}}"
                             }")
-             info= ${{parseJson(details)}}
-             echo $info >> packages.txt
+             
+             echo `"$details"` >> packages.json
                               
                                git config user.name ashmitasawant
                                git config user.email ashmitasawant3@gmail.com
