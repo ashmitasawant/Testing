@@ -47,7 +47,7 @@ jobs:
    needs: createPackage
    steps:
      - name: Getting Information 
-       id: settingInfo
+     - id: settingInfo
      - uses: jsdaniell/create-json@1.1.2
        with:
         name: "details.json"
