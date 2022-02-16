@@ -54,4 +54,5 @@ jobs:
        with:
         name: "details.json"
         json: '{ "packageId": "${{needs.createPackage.outputs.packageId}}","componentId": "${{needs.createPackage.outputs.componentId}}","componentVersion": "${{needs.createPackage.outputs.componentVersion}}}'
-     - run: echo "::set-output name=jsonCreated::${{steps.settingInfo.outputs.*,'\n'}}
+     - run: |
+            echo "::set-output name=jsonCreated::${{steps.settingInfo.outputs.*,'\n'}}
