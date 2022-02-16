@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
      packageId: ${{ steps.packageCreate.outputs.packageIds }}
+     packageVersion: ${{steps.packageCreate.outputs.packageVersions}}
      componentId: ${{steps.packageCreate.outputs.componentIds}}
      componentVersion: ${{steps.packageCreate.outputs.componentVersions}}
     
@@ -31,14 +32,16 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "aafd5e29-e75d-4bdb-9ec9-5b94ffd024d4","packageVersion":"v1.11", "notes":"Initial Package" }'`
+                               --data '{"componentId": "aafd5e29-e75d-4bdb-9ec9-5b94ffd024d4","packageVersion":"v1.12", "notes":"Initial Package" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
+                               packageVersion=$(echo ${CODE} | jq '.packageVersion')
                                componentIds=$(echo ${CODE} | jq '.componentId')
                                componentVersion=$(echo ${CODE} | jq '.componentVersion')
                                
                                echo "::set-output name=packageIds::$packageIds"
+                               echo "::set-output name=packageVersions::$packageVersion"
                                echo "::set-output name=componentIds::$componentIds"
                                echo "::set-output name=componentVersions::$componentVersion"
                
@@ -47,13 +50,24 @@ jobs:
    needs: createPackage
    steps:
      - name: Getting Information 
-       
-
-       id: settingInfo
        uses: actions/checkout@v2
-     - uses: jsdaniell/create-json@1.1.2
-       with:
-        name: "details.json"
-        json: '{ "packageId": "${{needs.createPackage.outputs.packageId}}","componentId": "${{needs.createPackage.outputs.componentId}}","componentVersion": "${{needs.createPackage.outputs.componentVersion}}}'
-        dir: 'ProcessInfo/'
+
+     - id: settingInfo
+     
+       run: |
+             details=$(echo "{
+                              "packageId": "${{needs.createPackage.outputs.packageId}}",
+                              "packageVersion": "${{needs.createPackage.outputs.packageVersion}}",
+                              "componentId": "${{needs.createPackage.outputs.componentId}}",
+                              "componentVersion": "${{needs.createPackage.outputs.componentVersion}}"
+                            }")
+             info= ${{parseJson(details)}}
+             echo $info >> packages.txt
+                              
+                               git config user.name ashmitasawant
+                               git config user.email ashmitasawant3@gmail.com
+                               git add .
+                               git commit -m "Published Changes"
+                               git config pull.rebase false
+                               git push --force origin main
        
