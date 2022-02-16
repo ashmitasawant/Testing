@@ -32,7 +32,7 @@ jobs:
                                --header 'content-type: application/json' \
                                --header 'accept: application/json' \
                                --url 'https://api.boomi.com/api/rest/v1/trainingashmitasawant-D9P8J7/PackagedComponent' \
-                               --data '{"componentId": "aafd5e29-e75d-4bdb-9ec9-5b94ffd024d4","packageVersion":"v1.20", "notes":"Initial Package" }'`
+                               --data '{"componentId": "aafd5e29-e75d-4bdb-9ec9-5b94ffd024d4","packageVersion":"v1.21", "notes":"Initial Package" }'`
                                echo $CODE
                                
                                packageIds=$(echo ${CODE} | jq '.packageId')
@@ -56,10 +56,14 @@ jobs:
      
        
        run: |
-             import json
-             details='{"packageId": "${{needs.createPackage.outputs.packageId}}","componentId": "${{needs.createPackage.outputs.componentId}}","componentVersion": "${{needs.createPackage.outputs.componentVersion}}"}'
-             pair=json.loads(details)
-             print (pair['packageId'])
-                 
+        run: |
+             details=$(echo "{
+                              "packageId": "${{needs.createPackage.outputs.packageId}}",
+                              "componentId": "${{needs.createPackage.outputs.componentId}}",
+                              "componentVersion": "${{needs.createPackage.outputs.componentVersion}}"
+                            }")
+             
+             echo $details 
+            
      
        
