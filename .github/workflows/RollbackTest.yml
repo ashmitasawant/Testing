@@ -49,9 +49,9 @@ jobs:
      - name: Getting Information 
        
 
-     - id: settingInfo
-     - uses: jsdaniell/create-json@1.1.2
-     - with:
+       id: settingInfo
+       uses: jsdaniell/create-json@1.1.2
+       with:
         name: "details.json"
         json: '{ "packageId": "${{needs.createPackage.outputs.packageId}}","componentId": "${{needs.createPackage.outputs.componentId}}","componentVersion": "${{needs.createPackage.outputs.componentVersion}}}'
      - run: |
