@@ -20,11 +20,7 @@ jobs:
       - id: getName
         run: |
                 
-                file=$(cat ./out.json)
-                echo $file
-                response=$(echo ${file} | jq '.[] | .response[] | .deploymentId')
-                echo $response
-                data=$(echo ${file} | jq '.[] | .response += [{"date": "2010-01-07T19:55:99.999Z", "xml": "xml_samplesheet_2017_01_07_run_09.xml", "status": "OKKK", "message": "metadata loaded into iRODS successfullyyyyy"}]')
+                data=[{"ab":"vg"},{"hj":"kl"}] | jq '.[] += [{"date": "2010-01-07T19:55:99.999Z", "xml": "xml_samplesheet_2017_01_07_run_09.xml", "status": "OKKK", "message": "metadata loaded into iRODS successfullyyyyy"}]')
                 echo $data >> out.json
                                git config user.name ashmitasawant
                                git config user.email ashmitasawant3@gmail.com
