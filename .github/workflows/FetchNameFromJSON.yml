@@ -54,3 +54,5 @@ jobs:
                                git config pull.rebase false
                                git push --force origin main
 
+                info=$(cat ./out.json)
+                detail=$(echo ${info} | jq '.type[0]')
