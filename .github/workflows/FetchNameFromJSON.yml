@@ -19,28 +19,9 @@ jobs:
         uses: actions/checkout@v2
       - id: getName
         run: |
-                nameget='{
-                           "@type": "DeployedPackage",
-                           "deploymentId": "52063821-0b36-45a2-8cbc-d7910cbed8b5",
-                           "version": 77,
-                           "packageId": "12d61b53-e111-460b-a9a7-588e9886eb9f",
-                           "packageVersion": "v5",
-                           "environmentId": "5d9c830c-1f65-4fed-b7ef-fdbbbaf7d259",
-                           "componentId": "bb076cd7-8f1e-42a7-843c-3b9c5dda0bb5",
-                           "componentVersion": 11,
-                           "componentType": "process",
-                           "deployedDate": "2022-02-21T11:10:17Z",
-                           "deployedBy": "ashmita.sawant@neosalpha.com",
-                           "active": true
-                          }'
+                
                 file=$(cat ./out.json)
-                data=$(echo ${file} | jq '.response += [{"date": "2010-01-07T19:55:99.999Z", "xml": "xml_samplesheet_2017_01_07_run_09.xml", "status": "OKKK", "message": "metadata loaded into iRODS successfullyyyyy"}]')
-                echo $data >> out.json
-                               git config user.name ashmitasawant
-                               git config user.email ashmitasawant3@gmail.com
-                               git add .
-                               git commit -m "Published Changes"
-                               git config pull.rebase false
-                               git push --force origin main
-
+                echo $file
+                response=$(echo ${file} | jq '.[] | .response')
+                echo $response
                 
