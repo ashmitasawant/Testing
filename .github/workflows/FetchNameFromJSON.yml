@@ -20,6 +20,6 @@ jobs:
       - id: getName
         run: |
                 nameget=$(cat ./packages.json)
-                name=$(echo ${nameget} | jq '.{} | .environmentName')
+                name=$(echo ${nameget} | jq '.name')
                 echo nameget
                 echo name
