@@ -32,4 +32,5 @@ jobs:
                                git commit -m "Published Changes"
                                git config pull.rebase false
                                git push --force origin main
+                               
                 
