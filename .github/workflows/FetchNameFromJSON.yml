@@ -20,7 +20,7 @@ jobs:
       - id: getName
         run: |
                 
-                data=$(cat .out.json | jq '.[] += [{"c": "d"}]')
+                data=$(cat .out.json | jq '.[] += [{"date": "2010-01-07T19:55:99.999Z"}]')
                 echo $data >> out.json
                                git config user.name ashmitasawant
                                git config user.email ashmitasawant3@gmail.com
