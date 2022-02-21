@@ -22,6 +22,6 @@ jobs:
                 
                 file=$(cat ./out.json)
                 echo $file
-                response=$(echo ${file} | jq '.[] | .[] | .deploymentId')
+                response=$(echo ${file} | jq '.[] | .response[] | .deploymentId')
                 echo $response
                 
