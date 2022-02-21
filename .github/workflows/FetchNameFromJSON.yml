@@ -56,3 +56,4 @@ jobs:
 
                 info=$(cat ./out.json)
                 detail=$(echo ${info} | jq '.type[0]')
+                echo $detail
