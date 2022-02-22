@@ -19,9 +19,10 @@ jobs:
         uses: actions/checkout@v2
       - id: getName
         run: |
-                response ="{"java":100, "python":112, "c":11}"
-                responseArray+="$response"
-                echo $responseArray >> out.json
+                file=$(cat ./out.json)
+                write=$($file jq ' .[] += [{"a":"v"}]')
+                echo $write
+                echo $write >> out.json
                 git config user.name ashmitasawant
                 git config user.email ashmitasawant3@gmail.com
                 git add .
