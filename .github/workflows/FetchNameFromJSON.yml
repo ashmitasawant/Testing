@@ -20,5 +20,5 @@ jobs:
         id: getName
       - run: |
               file=$(cat ./out.json)
-              data=$(sed '$ s/.$//' $file)
+              data=$(sed '$ s/.$//' ./out.json)
               echo $data
