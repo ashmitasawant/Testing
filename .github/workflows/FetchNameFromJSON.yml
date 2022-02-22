@@ -22,3 +22,5 @@ jobs:
               file=$(cat ./out.json)
               data=$(sed '$ s/.$//' ./out.json)
               echo $data
+              did=$(echo ${data} | jq '.[] | .deploymentId[0]')
+              echo $did
