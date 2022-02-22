@@ -19,13 +19,16 @@ jobs:
         uses: actions/checkout@v2
       - id: getName
         run: |
-             
-                        file= $(echo |jq '. +=[{"key2": "value2"}]')
-                        echo $file
-                        echo $file >> out.json
-                               git config user.name ashmitasawant
+                responseArray=[]
+                response ={"java":100, "python":112, "c":11}
+                responseArray.append(response)
+                echo $responseArray >> out.json
+                 git config user.name ashmitasawant
                                git config user.email ashmitasawant3@gmail.com
                                git add .
                                git commit -m "Published Changes"
                                git config pull.rebase false
                                git push --force origin main
+                
+ 
+                
