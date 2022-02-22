@@ -30,7 +30,7 @@ jobs:
       - name: get
         id: getName
         run: |
-                reading=read('./out.json')
+                reading = read(./out.json)
                
                 
                 myArray=[]
