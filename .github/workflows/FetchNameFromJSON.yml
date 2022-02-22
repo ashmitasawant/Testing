@@ -20,8 +20,5 @@ jobs:
         id: getName
       - run: |
               file=$(cat ./out.json)
-              fileArray=[$file]
-              echo $fileArray
-              did=$(echo ${fileArray} | jq '.[] | .deploymentId')
-              
-              echo $did
+              data=$(truncate -s-1 $file)
+              echo $data
