@@ -20,7 +20,7 @@ jobs:
       - id: getName
         run: |
              
-                        file= $ echo |jq '. + [{"key2": "value2"}]'
+                        file= $(echo |jq '. + [{"key2": "value2"}]')
                         echo $file >> out.json
                                git config user.name ashmitasawant
                                git config user.email ashmitasawant3@gmail.com
