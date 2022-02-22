@@ -4,29 +4,27 @@ on:
 jobs: 
   apiCall:
    runs-on: ubuntu-latest
-   outputs:
-      output1: ${{ steps.new.outputs.result}}
+
    steps:
      - name: Package Creation
        id: new
        run: |
-            CODE=`curl --write-out '%{http_code}' \
-            --request POST \
-            --header 'authorization: Basic dHJhaW5pbmdhc2htaXRhc2F3YW50LUQ5UDhKNy5ZRzFGQTQ6OWJmZDM5NWUtMzYxZC00MWFkLTgxMDctMTU0ZjU5Mzg0MDJm' \
-            --header 'content-type: application/json' \
-            --url 'https://c01-sg.integrate.boomi.com/ws/rest/personDetails/v1/personDetails/' \
-            --data '    {
-                          "name":"Ashmita",
-                          "age":18,
-                          "role":"Software Engineer"
-                         }'`
-             
-             
-            if [[ $CODE == *"200"* ]]
-            then
-               echo "The process executed successfully"
-            else
-               echo $CODE
-            fi
-              
-             
+           
+             data="{
+              "cruises": [
+                {
+
+                  "waypoint_cities": [
+                    "Palma de Mallorca",
+                    "Cádiz",
+                    "Puerto del Rosario, Fuerteventura",
+                    "Arrecife, Lanzarote",
+                    "Arrecife, Lanzarote",
+                    "Agadir",
+                    "Gibraltar",
+                    "Barcelona",
+                    "Palma de Mallorca"
+                  ]}]}"
+                  
+              show=$(echo ${data} | jq '.[][][][0, -1]')
+              echo $show
