@@ -17,18 +17,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Get Process Info
         uses: actions/checkout@v2
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7.7' # install the python version needed
+          
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: get
       - id: getName
         run: |
-                file=$(cat ./out.json)
-                write=$($file | jq ' . += [{"a":"v"}]')
-                echo $write
-                echo $write >> out.json
-                git config user.name ashmitasawant
-                git config user.email ashmitasawant3@gmail.com
-                git add .
-                git commit -m "Published Changes"
-                git config pull.rebase false
-                git push --force origin main
+                reading=read('./out.json')
+               
                 
+                myArray=[]
+                myArray.append(reading)
+                print (myArray)
  
                 
