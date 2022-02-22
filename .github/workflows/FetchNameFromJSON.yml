@@ -20,7 +20,7 @@ jobs:
       - id: getName
         run: |
                 file=$(cat ./out.json)
-                write=($file jq ' . += [{"a":"v"}]')
+                write=$($file | jq ' . += [{"a":"v"}]')
                 echo $write
                 echo $write >> out.json
                 git config user.name ashmitasawant
