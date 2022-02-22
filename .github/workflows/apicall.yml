@@ -16,5 +16,5 @@ jobs:
                         "l": "k"
                       }]"
 
-              show=$(echo ${data} | jq '.[]')
+              show=$(echo ${data} | jq '.[0] | .a')
               echo $show
