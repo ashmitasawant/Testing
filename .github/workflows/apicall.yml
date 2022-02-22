@@ -10,21 +10,11 @@ jobs:
        id: new
        run: |
            
-             data="{
-              "cruises": [
-                {
+             data="[{
+                        "a": "n"
+                      }, {
+                        "l": "k"
+                      }]"
 
-                  "waypoint_cities": [
-                    "Palma de Mallorca",
-                    "Cádiz",
-                    "Puerto del Rosario, Fuerteventura",
-                    "Arrecife, Lanzarote",
-                    "Arrecife, Lanzarote",
-                    "Agadir",
-                    "Gibraltar",
-                    "Barcelona",
-                    "Palma de Mallorca"
-                  ]}]}"
-                  
-              show=$(echo ${data} | jq '.[][][0, -1]')
+              show=$(echo ${data} | jq '.[][0, -1]')
               echo $show
