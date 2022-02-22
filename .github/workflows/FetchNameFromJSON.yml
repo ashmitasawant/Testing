@@ -19,8 +19,8 @@ jobs:
         uses: actions/checkout@v2
         id: getName
       - run: |
-              file=$(cat ./out.json)
+              
               data=$(sed '$ s/.$//' ./out.json)
-              echo $data
-              did=$(echo ${data} | jq '.[] | .deploymentId[0]')
+              responseArray=[$data]
+              did=$(echo ${responseArray} | jq '.[] | .deploymentId[0]')
               echo $did
