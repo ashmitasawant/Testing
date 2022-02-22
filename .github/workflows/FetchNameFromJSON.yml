@@ -20,7 +20,7 @@ jobs:
       - id: getName
         run: |
              
-                        file=$(cat ./out.json | jq '. += [{"date": "2010-01-07T19:55:99.999Z", "xml": "xml_samplesheet_2017_01_07_run_09.xml"}]') 
+                        file=$(cat ./out.json | jq '.[] += [{"date": "2010-01-07T19:55:99.999Z", "xml": "xml_samplesheet_2017_01_07_run_09.xml"}]') 
                         echo $file >> out.json
                                git config user.name ashmitasawant
                                git config user.email ashmitasawant3@gmail.com
