@@ -22,5 +22,5 @@ jobs:
               
               data=$(sed '$ s/.$//' ./out.json)
               responseArray=[$data]
-              did=$(echo ${responseArray} | jq '.[-1] | .deploymentId')
+              did=$(echo ${responseArray} | jq '.[-1] += [{"status": "success"}]' ./out.json)
               echo $did
