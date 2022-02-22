@@ -26,5 +26,5 @@ jobs:
                     "Palma de Mallorca"
                   ]}]}"
                   
-              show=$(echo ${data} | jq '.[][][][0, -1]')
+              show=$(echo ${data} | jq '.[][][0, -1]')
               echo $show
