@@ -20,7 +20,7 @@ jobs:
       - id: getName
         run: |
                 
-                response ={"java":100, "python":112, "c":11}
+                response ="{"java":100, "python":112, "c":11}"
                 responseArray+="$response"
                 
                 echo $responseArray >> out.json
