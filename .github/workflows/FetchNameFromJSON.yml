@@ -19,7 +19,8 @@ jobs:
         uses: actions/checkout@v2
         id: getName
       - run: |
-              CODE="[{"@type":"DeployedPackage","deploymentId":"8a86ee42-4c2e-4002-9e35-9a256ac0a6b8","version":81,"packageId":"b8105495-fd12-47f9-ba11-9fc2f5f95a1e","packageVersion":"v9","environmentId":"5d9c830c-1f65-4fed-b7ef-fdbbbaf7d259","componentId":"bb076cd7-8f1e-42a7-843c-3b9c5dda0bb5","componentVersion":11,"componentType":"process","deployedDate":"2022-02-23T08:21:26Z","deployedBy":"ashmita.sawant@neosalpha.com","active":true}]"
-              data=$(echo ${CODE} | jq '. += {"processName":"TestWS"}')
+              CODE=[{"@type":"DeployedPackage","deploymentId":"8a86ee42-4c2e-4002-9e35-9a256ac0a6b8","version":81,"packageId":"b8105495-fd12-47f9-ba11-9fc2f5f95a1e","packageVersion":"v9","environmentId":"5d9c830c-1f65-4fed-b7ef-fdbbbaf7d259","componentId":"bb076cd7-8f1e-42a7-843c-3b9c5dda0bb5","componentVersion":11,"componentType":"process","deployedDate":"2022-02-23T08:21:26Z","deployedBy":"ashmita.sawant@neosalpha.com","active":true}]"
+              echo $CODE
+              data=$(echo ${CODE} jq '. += {"processName":"TestWS"}')
              
               echo $data
