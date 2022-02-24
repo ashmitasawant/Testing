@@ -23,6 +23,13 @@ jobs:
         uses: jsdaniell/create-json@1.1.2
         with:
           name: "new-json-file.json"
+          json: '{"name":"abh", "password":"mypass"}'
+          dir: 'ProcessInfo/'
+      - name: create-json
+        id: create-jsonm
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: "new-json-file.json"
           json: '{"name":"ash", "password":"mypass"}'
           dir: 'ProcessInfo/'
       - run: |
