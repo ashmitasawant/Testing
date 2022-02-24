@@ -23,7 +23,7 @@ jobs:
         uses: jsdaniell/create-json@1.1.2
         with:
           name: "new-json-file.json"
-          json: '{"name":"jsdaniell", "password":"mypass"}'
+          json: '{"name":"ash", "password":"mypass"}'
           dir: 'ProcessInfo/'
       - run: |
               git config user.name ashmitasawant
