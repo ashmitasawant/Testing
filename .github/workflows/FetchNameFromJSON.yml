@@ -21,7 +21,7 @@ jobs:
       - name: create-json
         id: createJson
         run: |
-              nameIs="Ashmita
+              nameIs="Ashmita"
               json="{"name":"'$nameIs'","age":24}"
               echo $json >> out.json
               git config user.name ashmitasawant
