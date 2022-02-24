@@ -20,7 +20,7 @@ jobs:
       
       - name: create-json
         id: createJson
-      - run: |
+        run: |
               nameIs="Ashmita
               json="{"name":"'$nameIs'","age":24}"
               echo $json >> out.json
