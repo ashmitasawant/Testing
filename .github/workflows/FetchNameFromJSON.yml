@@ -24,7 +24,7 @@ jobs:
         with:
           name: "new-json-file.json"
           json: '{"name":"jsdaniell", "password":"mypass"}'
-          dir: './out.json'
+          dir: 'ProcessInfo/'
     
               
                              
