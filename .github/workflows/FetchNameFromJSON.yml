@@ -22,7 +22,7 @@ jobs:
         id: createJson
         run: |
               nameIs="Ashmita"
-              json="{"name":"'$nameIs'","age":24}"
+              json={"name":"'$nameIs'","age":24}
               echo $json >> out.json
               git config user.name ashmitasawant
               git config user.email ashmitasawant3@gmail.com
